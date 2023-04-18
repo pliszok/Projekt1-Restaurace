@@ -1,0 +1,8 @@
+Česneková; 63; 5; cesnekova-polevka-01; SOUP
+Hovězí vývar; 69; 5; hovezi-vyvar-01; SOUP
+Cordon Bleu; 229; 20; cordon-bleu-01; CHICKEN
+Kuřecí špíz; 249; 25; kureci-spiz-01; CHICKEN
+Losos steak; 329; 25; losos-steak-01; FISH
+Tuňákový salát; 299; 25; tunkovy-salat-01; FISH
+Špagety Carbonara; 239; 15; spagety-carbonara-01; PASTA
+Lasagne Bolognese; 249; 15; lasagne-bolognese-01; PASTA
