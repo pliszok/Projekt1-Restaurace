@@ -22,6 +22,15 @@ public class DishList {
         dishList.remove(dish);
     }
 
+    public void containsDish(Dish dish){
+        if(dishList.contains(dish)) {
+            System.out.println(dish.getTitle()+" - Toto jídlo je na soušasném menu.");
+        }
+        else{
+            System.out.println("Zadané jídlo bohužel není součástí menu.");
+        }
+    }
+
     public List<Dish> getDishList() {
         return new ArrayList<>(dishList);
     }
@@ -42,7 +51,8 @@ public class DishList {
         } catch (FileNotFoundException e) {
             throw new DishException("Soubor nenalezen. Error: " + e.getMessage());
         } catch (NumberFormatException e) {
-            throw new DishException("Špatně zadané číslo na řádku: " + lineNumber + ": \"" + items[1] + " nebo" + items[2] + " není číslo.");
+            throw new DishException("Špatně zadané číslo na řádku "+lineNumber+" - \""+items[1]+"\""+" nebo \""+items[2]+"\" není číslo."
+                    +"\n"+e.getLocalizedMessage());
         } catch (EnumConstantNotPresentException e) {
             throw new DishException("Špatný formát kategorie na řádku: " + lineNumber + "\n" + e.getLocalizedMessage());
         }

@@ -9,17 +9,26 @@ public class Order {
     private LocalTime orderTime;
     private String waiter;
     private LocalTime fulfilmentTime;
-    private String table;
+    private Table table;
 
     //endregion atributes
 
     //region get set
+
     public String getDish() {
         return dish;
     }
 
     public void setDish(String dish) {
         this.dish = dish;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
     }
 
     public LocalTime getOrderTime() {
@@ -45,41 +54,25 @@ public class Order {
     public void setFulfilmentTime(LocalTime fulfilmentTime) {
         this.fulfilmentTime = fulfilmentTime;
     }
-
 //endregion
 
-
-    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, String table) {
+    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table) {
         this.dish = dish;
         this.orderTime = orderTime;
         this.waiter = waiter;
         this.fulfilmentTime = fulfilmentTime;
-        table = "table1";
+        this.table = table;
+    }
+
+    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime) {
+        this.dish = dish;
+        this.orderTime = orderTime;
+        this.waiter = waiter;
+        this.fulfilmentTime = fulfilmentTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Objednávka: "+dish+", musí být hotova v "+getFulfilmentTime()+", je pro "+getTable()+", obsluhuje "+getWaiter();
     }
 }
-
-       /* public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, String table) {
-        this.dish = dish;
-        this.orderTime = orderTime;
-        this.waiter = waiter;
-        this.fulfilmentTime = fulfilmentTime;
-        table="table2";
-    }
-
-    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, String table) {
-        this.dish = dish;
-        this.orderTime = orderTime;
-        this.waiter = waiter;
-        this.fulfilmentTime = fulfilmentTime;
-        table="table3";
-    }
-
-    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, String table) {
-        this.dish = dish;
-        this.orderTime = orderTime;
-        this.waiter = waiter;
-        this.fulfilmentTime = fulfilmentTime;
-        table="table4";
-
-    }
-}*/

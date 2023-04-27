@@ -1,6 +1,8 @@
 package com.engeto.projekt1_restaurace;
 
 import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.temporal.TemporalAmount;
 
 public class Dish {
 
@@ -20,11 +22,12 @@ public class Dish {
         this.category=category;
     }
 
-
     @Override
     public String toString() {
-        return "Název: "+title+", cena: "+price+" Kč.";
+        return "název: "+title+", cena: "+price+" Kč.";
     }
+
+    //Duration duration = Duration.ofMinutes(getPreparationTime());
 
     //region get set
 
