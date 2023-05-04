@@ -7,4 +7,11 @@ public class Settings {
     public static String getFilename(){
         return FILENAME;
     }
+
+
+    public static final String MENU = "Menu.txt";
+
+    public static String getMenu(){
+        return MENU;
+    }
 }

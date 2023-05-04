@@ -64,15 +64,10 @@ public class Order {
         this.table = table;
     }
 
-    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime) {
-        this.dish = dish;
-        this.orderTime = orderTime;
-        this.waiter = waiter;
-        this.fulfilmentTime = fulfilmentTime;
-    }
-
     @Override
     public String toString() {
         return "Objednávka: "+dish+", musí být hotova v "+getFulfilmentTime()+", je pro "+getTable()+", obsluhuje "+getWaiter();
     }
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:SS", Locale.US);
+//    formatter.format(LocalTime.getOrderTime);
 }

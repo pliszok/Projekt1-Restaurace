@@ -1,12 +1,9 @@
 package com.engeto.projekt1_restaurace;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,6 +26,17 @@ public class DishList {
         else{
             System.out.println("Zadané jídlo bohužel není součástí menu.");
         }
+    }
+
+    public Dish getDishFromIndex(List<Dish> dishList, int index)throws IndexOutOfBoundsException{
+        if(index<0 && index>dishList.size()){
+            throw new IndexOutOfBoundsException("Musíte zadat index od \"0\" do "+"\""+dishList.size()+"\". Zadal jsi "+index);
+        }
+        return dishList.get(index);
+    }
+
+    public void sortByCategory(){
+        Collections.sort(dishList, new DishCategoryComparator());
     }
 
     public List<Dish> getDishList() {
@@ -55,6 +63,16 @@ public class DishList {
                     +"\n"+e.getLocalizedMessage());
         } catch (EnumConstantNotPresentException e) {
             throw new DishException("Špatný formát kategorie na řádku: " + lineNumber + "\n" + e.getLocalizedMessage());
+        }
+    }
+
+    public void saveToFile(String filename) throws DishException {
+        try (PrintWriter outputWriter = new PrintWriter(new FileWriter(filename))) {
+            for (Dish dish : dishList) {
+                outputWriter.println(dish);
+            }
+        } catch (IOException e) {
+            throw new DishException("Došlo k chybě při zápisu do souboru "+filename+": "+e.getLocalizedMessage());
         }
     }
 }
