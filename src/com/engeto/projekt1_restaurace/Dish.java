@@ -32,7 +32,7 @@ public class Dish {
 
     @Override
     public String toString() {
-        return category+" - název: "+title+", cena: "+price+" Kč.";
+        return title+";"+price+";"+preparationTime+";"+imageURL+";"+category;
     }
 
 

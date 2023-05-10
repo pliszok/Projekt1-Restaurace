@@ -10,7 +10,7 @@ public class Order {
     private String waiter;
     private LocalTime fulfilmentTime;
     private Table table;
-
+    private String notes;
     //endregion atributes
 
     //region get set
@@ -54,7 +54,20 @@ public class Order {
     public void setFulfilmentTime(LocalTime fulfilmentTime) {
         this.fulfilmentTime = fulfilmentTime;
     }
+
+    public String getNotes() { return notes; }
+
+    public void setNotes (String notes) { this.notes=notes; }
 //endregion
+
+    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table, String notes) {
+        this.dish = dish;
+        this.orderTime = orderTime;
+        this.waiter = waiter;
+        this.fulfilmentTime = fulfilmentTime;
+        this.table = table;
+        this.notes = notes;
+    }
 
     public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table) {
         this.dish = dish;

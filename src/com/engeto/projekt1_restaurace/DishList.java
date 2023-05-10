@@ -19,13 +19,11 @@ public class DishList {
         dishList.remove(dish);
     }
 
-    public void containsDish(Dish dish){
-        if(dishList.contains(dish)) {
-            System.out.println(dish.getTitle()+" - Toto jídlo je na soušasném menu.");
+    public boolean containsDish(List<Dish> dishList, Dish dish){
+        if (dishList.contains(dish)){
+            return true;
         }
-        else{
-            System.out.println("Zadané jídlo bohužel není součástí menu.");
-        }
+        return false;
     }
 
     public Dish getDishFromIndex(List<Dish> dishList, int index)throws IndexOutOfBoundsException{
@@ -43,7 +41,7 @@ public class DishList {
         return new ArrayList<>(dishList);
     }
 
-    public void addAllFromFile(String filename) throws DishException {
+    public void addAllFromRepertoar(String filename) throws DishException {
         int lineNumber = 0;
         String[] items = new String[4];
         try
@@ -66,10 +64,21 @@ public class DishList {
         }
     }
 
-    public void saveToFile(String filename) throws DishException {
+
+    public void saveToRepertoar(String filename) throws DishException {
         try (PrintWriter outputWriter = new PrintWriter(new FileWriter(filename))) {
             for (Dish dish : dishList) {
                 outputWriter.println(dish);
+            }
+        } catch (IOException e) {
+            throw new DishException("Došlo k chybě při zápisu do souboru "+filename+": "+e.getLocalizedMessage());
+        }
+    }
+
+    public void saveToMenu(String filename) throws DishException {
+        try (PrintWriter outputWriter = new PrintWriter(new FileWriter(filename))) {
+            for (Dish dish : dishList) {
+                outputWriter.println(dish.getTitle()+": "+dish.getPrice()+" Kč.");
             }
         } catch (IOException e) {
             throw new DishException("Došlo k chybě při zápisu do souboru "+filename+": "+e.getLocalizedMessage());

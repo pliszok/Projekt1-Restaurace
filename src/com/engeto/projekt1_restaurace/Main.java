@@ -10,36 +10,41 @@ public class Main {
 
     public static void main(String[] args) throws DishException{
 
-        DishList menu = new DishList();
+        DishList repertoar = new DishList();
 
-        System.out.println("\n===Načtu do menu jídla z repertoáru a vypíšu===");
-        menu.addAllFromFile(Settings.getFilename());
+        System.out.println("\n===Načtu repertoár a vypíšu===");
+        repertoar.addAllFromRepertoar(Settings.getRepertoar());
 
         Dish zebirka = new Dish("žebírka", BigDecimal.valueOf(189), 20, "zebirka-01", Category.OTHERS);
-        menu.addDish(zebirka);
+        repertoar.addDish(zebirka);
 
         System.out.println("\n===přidal jsem žebírka a vypíšu===");
-        for (Dish dish:menu.getDishList()){
+        for (Dish dish:repertoar.getDishList()){
             System.out.println(dish);
         }
 
-        System.out.println("\n===zjistím, jestli jsou žebírka v menu===");
-        menu.containsDish(zebirka);
+        System.out.println("\n===zjistím, jestli jsou žebírka v repertoáru===");
+
+        if(repertoar.containsDish(repertoar.getDishList(), zebirka)==true){
+            System.out.println("ano");
+        }
 
         System.out.println("\n===vytvořím a vypíšu objednávku===");
         Order objednavka = new Order("zebirka", LocalTime.now(),"Tomáš",
                 LocalTime.now().plus(Duration.ofMinutes(zebirka.getPreparationTime())), Table.TABLE1);
         System.out.println(objednavka);
 
-        System.out.println("\n===teď seřadím podle kategorií a vyúíšu===");
-        menu.sortByCategory();
-        for (Dish dish:menu.getDishList()){
+        System.out.println("\n===teď seřadím podle kategorií a vypíšu===");
+        repertoar.sortByCategory();
+        for (Dish dish:repertoar.getDishList()){
             System.out.println(dish);
         }
 
-        System.out.println("\n===vymažu jedno jídlo a uložím seřazený seznam jídel do menu===");
-        menu.removeDish(menu.getDishFromIndex(menu.getDishList(),4));
+        System.out.println("\n===vymažu jedno jídlo a uložím seřazený seznam jídel do repertoáru===");
+        repertoar.removeDish(repertoar.getDishFromIndex(repertoar.getDishList(),4));
 
-        menu.saveToFile(Settings.getMenu());
+        repertoar.saveToRepertoar(Settings.getRepertoar());
+
+        repertoar.saveToMenu(Settings.getMenu());
     }
 }
