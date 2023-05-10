@@ -30,7 +30,7 @@ public class Main {
         }
 
         System.out.println("\n===vytvořím a vypíšu objednávku===");
-        Order objednavka = new Order("zebirka", LocalTime.now(),"Tomáš",
+        Order objednavka = new Order(, LocalTime.now(),"Tomáš",
                 LocalTime.now().plus(Duration.ofMinutes(zebirka.getPreparationTime())), Table.TABLE1);
         System.out.println(objednavka);
 

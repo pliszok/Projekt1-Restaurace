@@ -5,7 +5,7 @@ import java.time.LocalTime;
 public class Order {
 
     //region atributes
-    private String dish;
+    private Dish dish;
     private LocalTime orderTime;
     private String waiter;
     private LocalTime fulfilmentTime;
@@ -14,15 +14,6 @@ public class Order {
     //endregion atributes
 
     //region get set
-
-    public String getDish() {
-        return dish;
-    }
-
-    public void setDish(String dish) {
-        this.dish = dish;
-    }
-
     public Table getTable() {
         return table;
     }
@@ -60,22 +51,28 @@ public class Order {
     public void setNotes (String notes) { this.notes=notes; }
 //endregion
 
-    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table, String notes) {
+    //Udělat objednávku s objektem Dish, fulfilment time bude order time + dish.getPreparationTime
+
+    public Order(Dish dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table, String notes) {
         this.dish = dish;
         this.orderTime = orderTime;
         this.waiter = waiter;
-        this.fulfilmentTime = fulfilmentTime;
+        this.fulfilmentTime = fulfilmentTime.plusMinutes(dish.getPreparationTime());
         this.table = table;
         this.notes = notes;
     }
 
-    public Order(String dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table) {
+    public Order(Dish dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table) {
         this.dish = dish;
         this.orderTime = orderTime;
         this.waiter = waiter;
         this.fulfilmentTime = fulfilmentTime;
         this.table = table;
     }
+
+//    public boolean isFinished(Order order){
+//        if(order.getOrderTime()+order.getOrderTime())
+//    }
 
     @Override
     public String toString() {

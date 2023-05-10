@@ -18,6 +18,17 @@ public class OrderList {
         Collections.sort(orderList, new OrderTimeComparator());
     }
 
+    public List<Order> getOrderList() {
+        return new ArrayList<>(orderList);
+    }
+
+    public void ordersToFinish() {
+        boolean isReady;
+        for (Order order:orderList){
+            if(order.)
+        }
+    }
+
     public void saveToFile(String filename) throws DishException {
         try (PrintWriter outputWriter = new PrintWriter(new FileWriter(filename))) {
             for (Order order : orderList) {
