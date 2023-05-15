@@ -2,8 +2,10 @@ Cordon Bleu;229;20;cordon-bleu-01;CHICKEN
 Kuřecí špíz;249;25;kureci-spiz-01;CHICKEN
 Losos steak;329;25;losos-steak-01;FISH
 Tuňákový salát;299;25;tunkovy-salat-01;FISH
-Česneková;60;2;cesnekova-polevka-01;SOUP
-Hovězí vývar;69;5;hovezi-vyvar-01;SOUP
-Hovězí tatarák;259;15;hovezi-tatarak-01;OTHERS
-žebírka;189;20;zebirka-01;OTHERS
-žebírka;189;20;zebirka-01;OTHERS
+Vepřová žebírka;209;20;veprova-zebirka-01;OTHERS
+Tatarák  z hovězí svíčkové;219;20;tatarak-z-hovezi-svickove-01;OTHERS
+Česneková;59;10;cesnekova-01;SOUP
+Gulášová;69;10;gulasova-01;SOUP
+Lasagne bolognese;189;20;lasagne-bolognese-01;PASTA
+Špagety carbonara;179;20;spagety-carbonara-01;PASTA
+

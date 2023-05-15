@@ -53,11 +53,11 @@ public class Order {
 
     //Udělat objednávku s objektem Dish, fulfilment time bude order time + dish.getPreparationTime
 
-    public Order(Dish dish, LocalTime orderTime, String waiter, LocalTime fulfilmentTime, Table table, String notes) {
+    public Order(Dish dish, LocalTime orderTime, String waiter, Table table, String notes) {
         this.dish = dish;
         this.orderTime = orderTime;
         this.waiter = waiter;
-        this.fulfilmentTime = fulfilmentTime.plusMinutes(dish.getPreparationTime());
+        fulfilmentTime = LocalTime.now().plusMinutes(dish.getPreparationTime());
         this.table = table;
         this.notes = notes;
     }
@@ -76,7 +76,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Objednávka: "+dish+", musí být hotova v "+getFulfilmentTime()+", je pro "+getTable()+", obsluhuje "+getWaiter();
+        return "Objednávka: "+dish.getTitle()+", musí být hotova v "+getFulfilmentTime()+", je pro "+getTable()+", obsluhuje "+getWaiter();
     }
 //    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:SS", Locale.US);
 //    formatter.format(LocalTime.getOrderTime);
