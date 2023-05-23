@@ -42,6 +42,11 @@ public class OrderList {
         System.out.println("Počet nedokončených objednávek je: "+sum);
     }
 
+    public void sortByWaiter() {
+        Collections.sort(orderList, new WaiterComparator());
+    }
+
+
     public void saveToFile(String filename) throws DishException {
         try (PrintWriter outputWriter = new PrintWriter(new FileWriter(filename))) {
             for (Order order : orderList) {
