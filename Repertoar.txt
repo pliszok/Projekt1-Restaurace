@@ -8,4 +8,3 @@ Tatarák  z hovězí svíčkové;219;20;tatarak-z-hovezi-svickove-01;OTHERS
 Gulášová;69;10;gulasova-01;SOUP
 Lasagne bolognese;189;20;lasagne-bolognese-01;PASTA
 Špagety carbonara;179;20;spagety-carbonara-01;PASTA
-

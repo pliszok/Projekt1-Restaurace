@@ -14,6 +14,27 @@ public class Main {
 
         System.out.println("\n===Načtu repertoár a vypíšu===");
         repertoar.addAllFromRepertoar(Settings.getRepertoar());
+
+        System.out.println("\n====Vytvořím objednávku a vypíšu===");
+        Order objednavka = new Order(repertoar.getDishList().get(0),LocalTime.now(),"Pepa", Table.TABLE3,"bez poznámek");
+        System.out.println(objednavka);
+
+        Order objednavka2 = new Order(repertoar.getDishList().get(5),LocalTime.now(),"Pepa", Table.TABLE3,"bez poznámek");
+        System.out.println(objednavka2);
+
+        Order objednavka3 = new Order(repertoar.getDishList().get(3),LocalTime.now(),"Pepa", Table.TABLE3,"bez poznámek");
+        System.out.println(objednavka3);
+
+        OrderList orders = new OrderList();
+
+        orders.addToOrders(objednavka);
+        orders.addToOrders(objednavka2);
+        orders.addToOrders(objednavka3);
+
+        orders.ordersToFinish();
+
+        orders.sumOfOrdersToFinish();
+
     }
 }
 
