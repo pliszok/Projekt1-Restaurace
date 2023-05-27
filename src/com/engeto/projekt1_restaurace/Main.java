@@ -35,6 +35,9 @@ public class Main {
 
         orders.sumOfOrdersToFinish();
 
+        orders.priceByWaiter("Pepa");
+
+        orders.averageOrderFulfilmentTime(LocalTime.of(10,00,00), LocalTime.of(12,00,00));
     }
 }
 

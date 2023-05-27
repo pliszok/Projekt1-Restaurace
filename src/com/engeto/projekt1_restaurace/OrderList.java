@@ -3,6 +3,8 @@ package com.engeto.projekt1_restaurace;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,6 +46,33 @@ public class OrderList {
 
     public void sortByWaiter() {
         Collections.sort(orderList, new WaiterComparator());
+    }
+
+    public void priceByWaiter(String waiter){
+        BigDecimal x;
+        BigDecimal y = BigDecimal.valueOf(0);
+        for(Order order:orderList){
+            if(order.getWaiter()==waiter) {
+                x = order.getDish().getPrice();
+                y = y.add(x);
+            }
+            System.out.println("Číšník "+order.getWaiter()+" má celkem objednávky za: "+y+" Kč.");
+        }
+    }
+
+    public void averageOrderFulfilmentTime(LocalTime timeStart, LocalTime timeEnd){
+        int totalPreparationTime = 0;
+        int count = 0;
+        int averagePreparatioinTime;
+        for(Order order:orderList) {
+            LocalTime orderTime = order.getOrderTime();
+            if (orderTime.isAfter(timeStart) && orderTime.isBefore(timeEnd)) {
+                totalPreparationTime += order.getDish().getPreparationTime();
+                count++;
+            }
+        }
+        averagePreparatioinTime = totalPreparationTime / count;
+        System.out.println("Průměrná doba zpracování objednávek v čase "+timeStart+" - "+timeEnd+" je "+averagePreparatioinTime+" minut.");
     }
 
 

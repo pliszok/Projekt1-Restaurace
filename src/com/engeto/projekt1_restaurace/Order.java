@@ -49,6 +49,8 @@ public class Order {
     public String getNotes() { return notes; }
 
     public void setNotes (String notes) { this.notes=notes; }
+
+    public Dish getDish() { return dish; }
 //endregion
 
     public Order(Dish dish, LocalTime orderTime, String waiter, Table table, String notes) {
@@ -62,6 +64,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Objednávka: "+dish.getTitle()+", musí být hotova v "+getFulfilmentTime().getHour()+":"+getFulfilmentTime().getMinute()+", je pro "+getTable()+", obsluhuje "+getWaiter();
+        return "Objednávka: "+dish.getTitle()+", musí být hotova v "+getFulfilmentTime().getHour()+":"+getFulfilmentTime().getMinute()+
+                ", je pro "+getTable()+", obsluhuje "+getWaiter()+". Cena: "+dish.getPrice()+" Kč.";
     }
 }
