@@ -1,23 +1,29 @@
 package com.engeto.projekt1_restaurace;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dish {
 
     //region attributes
+    private static final String DEFAULT_IMAGE = "blank.url";
+
     private String title;
     private BigDecimal price;
     private int preparationTime;
-    private String imageURL;
+    private List<String> imageURL;
+    private String mainImage;
     private Category category;
     //endregion
 
     // region constructors
-    public Dish(String title, BigDecimal price, int preparationTime, String imageURL, Category category){
+    public Dish(String title, BigDecimal price, int preparationTime, String mainImage, Category category){
         this.title=title;
         this.price=price;
         this.preparationTime=preparationTime;
-        this.imageURL=imageURL;
+        this.imageURL=new ArrayList<>();
+        addImageURL(mainImage);
         this.category=category;
     }
 
@@ -25,16 +31,39 @@ public class Dish {
         this.title=title;
         this.price=price;
         this.preparationTime=preparationTime;
-        setImageURL("blank");
+        this.imageURL=new ArrayList<>();
+        setMainImage(DEFAULT_IMAGE);
+        imageURL.add(mainImage);
         this.category=category;
     }
     //endregion
 
     @Override
     public String toString() {
-        return title+";"+price+";"+preparationTime+";"+imageURL+";"+category;
+        return title+";"+price+";"+preparationTime+";"+mainImage+";"+category;
     }
 
+
+    public void addImageURL(String imageName){
+        if(!imageURL.contains(imageName)){
+            imageURL.add(imageName);
+            if(imageURL.size()==1){
+                mainImage = imageName;
+            }
+        }
+    }
+
+    public void removeImageURL(String imageName){
+        if(imageURL.size()>1 && imageURL.contains(imageName)){
+            imageURL.remove(imageName);
+            if(imageName.equals(mainImage)){
+                mainImage = imageURL.get(0);
+            }
+        }
+        else {
+            System.out.println("Jídlo musí mít alespoň jednu fotografii.");
+        }
+    }
 
     //region get set
 
@@ -62,12 +91,14 @@ public class Dish {
         this.preparationTime = preparationTime;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getMainImage() {
+        return mainImage;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setMainImage(String imageName) {
+        if(imageURL.contains(imageName)){
+            mainImage = imageName;
+        }
     }
 
     public Category getCategory() { return category; }

@@ -4,10 +4,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class OrderList {
@@ -75,6 +75,34 @@ public class OrderList {
         System.out.println("Průměrná doba zpracování objednávek v čase "+timeStart+" - "+timeEnd+" je "+averagePreparatioinTime+" minut.");
     }
 
+    public void dishesServedToday(){
+        HashSet<Dish> servedDishes = new HashSet<>();
+        for(Order order: orderList){
+            //otevírací doba
+            if (order.getOrderTime().isAfter(LocalTime.of(8, 0))&&order.getOrderTime().isAfter(LocalTime.of(22, 0))){
+                servedDishes.add(order.getDish());
+            }
+        }
+    }
+
+    public void oneTableOrdersExport(String filename, Table table) throws OrderException{
+        try (PrintWriter outputWriter = new PrintWriter(new FileWriter(filename))) {
+            outputWriter.println("** Objednávky pro " + table + " **");
+            outputWriter.println("****");
+            for (Order order : orderList) {
+                int ordernumber = 0;
+                if (order.getTable().equals(table)) {
+                    ordernumber++;
+                    outputWriter.println(ordernumber+". "+order.getDish().getTitle()+" ("+order.getDish().getPrice()+" Kč):\t"+
+                            order.getOrderTime()+" - "+order.getFulfilmentTime()+"\tčíšník: "+order.getWaiter());
+
+                }
+            }
+        }
+            catch (IOException e) {
+                    throw new OrderException("Došlo k chybě při zápisu do souboru "+filename+": "+e.getLocalizedMessage());
+                }
+            }
 
     public void saveToFile(String filename) throws DishException {
         try (PrintWriter outputWriter = new PrintWriter(new FileWriter(filename))) {

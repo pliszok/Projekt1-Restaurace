@@ -1,7 +1,5 @@
 package com.engeto.projekt1_restaurace;
 
-import java.time.temporal.TemporalUnit;
-
 public enum Table {
     TABLE1("stůl 1"), TABLE2("stůl 2"), TABLE3("stůl 3"), TABLE4("stůl 4");
 

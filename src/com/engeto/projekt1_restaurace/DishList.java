@@ -11,19 +11,37 @@ public class DishList {
 
     private List<Dish> dishList = new ArrayList<>();
 
-    public void addDish(Dish dish) {
-        dishList.add(dish);
+    public void addDishToDishList(Dish dish) {
+        if (!dishList.contains(dish)) {
+            dishList.add(dish);
+        }
+        else {
+            System.out.println("Jídlo již je v seznamu.");
+        }
     }
 
-    public void removeDish(Dish dish) {
+    public void removeDishFromDishlist(Dish dish) {
         dishList.remove(dish);
     }
 
-    public boolean containsDish(List<Dish> dishList, Dish dish){
-        if (dishList.contains(dish)){
-            return true;
+    public Dish findDishByTitle(String title){
+        for(Dish dish : dishList){
+            if(dish.getTitle().equals(title)){
+                return dish;
+            }
         }
-        return false;
+        System.out.println("Jídlo \""+title+"\" nebylo nalezeno.");
+        return null;
+    }
+
+    public void updateDish(String title, BigDecimal newPrice, int newPreparationTime){
+        for (Dish dish : dishList){
+            findDishByTitle(title);
+            if(dish!=null){
+                dish.setPrice(newPrice);
+                dish.setPreparationTime(newPreparationTime);
+            }
+        }
     }
 
     public Dish getDishFromIndex(List<Dish> dishList, int index)throws IndexOutOfBoundsException{

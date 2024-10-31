@@ -1,70 +1,53 @@
 package com.engeto.projekt1_restaurace;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
 
     //region atributes
-    private Dish dish;
-    private LocalTime orderTime;
-    private String waiter;
-    private LocalTime fulfilmentTime;
-    private Table table;
-    private String notes;
+    private List<String> items;
+    private LocalDateTime orderedTime;
+    private Waiter waiter;
+    private LocalDateTime fulfilmentTime;
     //endregion atributes
 
-    //region get set
-    public Table getTable() {
-        return table;
+    public Order(List<String> items, Waiter waiter){
+        items = new ArrayList<>(items);
+        this.waiter = waiter;
+        this.orderedTime = LocalDateTime.now();
     }
 
-    public void setTable(Table table) {
-        this.table = table;
+    public void fulfilOrder(){
+        this.fulfilmentTime = LocalDateTime.now();
+    }
+    //region getters
+    public List<String> getItems(){
+        return items;
     }
 
-    public LocalTime getOrderTime() {
-        return orderTime;
+    public LocalDateTime getOrderedTime(){
+        return orderedTime;
     }
 
-    public void setOrderTime(LocalTime orderTime) {
-        this.orderTime = orderTime;
-    }
-
-    public String getWaiter() {
+    public Waiter getWaiter(){
         return waiter;
     }
 
-    public void setWaiter(String waiter) {
-        this.waiter = waiter;
-    }
-
-    public LocalTime getFulfilmentTime() {
+    public LocalDateTime getFulfilmentTime(){
         return fulfilmentTime;
     }
+    //endregion
 
-    public void setFulfilmentTime(LocalTime fulfilmentTime) {
-        this.fulfilmentTime = fulfilmentTime;
-    }
-
-    public String getNotes() { return notes; }
-
-    public void setNotes (String notes) { this.notes=notes; }
-
-    public Dish getDish() { return dish; }
-//endregion
-
-    public Order(Dish dish, LocalTime orderTime, String waiter, Table table, String notes) {
-        this.dish = dish;
-        this.orderTime = orderTime;
-        this.waiter = waiter;
-        fulfilmentTime = LocalTime.now().plusMinutes(dish.getPreparationTime());
-        this.table = table;
-        this.notes = notes;
+    public void addItems(List<String> additionalItems){
+        items.addAll(additionalItems);
     }
 
     @Override
     public String toString() {
-        return "Objednávka: "+dish.getTitle()+", musí být hotova v "+getFulfilmentTime().getHour()+":"+getFulfilmentTime().getMinute()+
-                ", je pro "+getTable()+", obsluhuje "+getWaiter()+". Cena: "+dish.getPrice()+" Kč.";
+        return "Objednávka zadána: "+ orderedTime+"\nčíšník: "+waiter.getName()+"\nObsahuje položky: "+items+
+                "\nByla vyřízena: "+(fulfilmentTime !=null ? fulfilmentTime : "nevyřízena");
     }
 }
